@@ -1,12 +1,19 @@
 package com.pharmacy.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "manufacturer", catalog="pharmacy_schema")
 public class Manufacturer implements Serializable{
 	
 	@Id
@@ -28,56 +35,67 @@ public class Manufacturer implements Serializable{
 	
 	@Column(name = "email")
 	private String email;
+	
+	@OneToMany(mappedBy = "manufacturer")
+	private List<Drug> drugs = new ArrayList<>();
 
 	public Manufacturer() {
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getPIB() {
-		return PIB;
-	}
-
-	public void setPIB(String pIB) {
-		PIB = pIB;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getHeadquarters() {
-		return headquarters;
-	}
-
-	public void setHeadquarters(String headquarters) {
-		this.headquarters = headquarters;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public List<Drug> getDrugs() {
+		return drugs;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
+	public String getHeadquarters() {
+		return headquarters;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getPIB() {
+		return PIB;
+	}
+
+	public void setDrugs(List<Drug> drugs) {
+		this.drugs = drugs;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public void setHeadquarters(String headquarters) {
+		this.headquarters = headquarters;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setPIB(String pIB) {
+		PIB = pIB;
 	}
 	
 	
