@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "drug", catalog = "pharmacy_schema")
 public class Drug implements Serializable {
@@ -39,10 +41,12 @@ public class Drug implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manufacturer_id")
+	@JsonIgnore
 	private Manufacturer manufacturer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "inn_id")
+	@JsonIgnore
 	private INN inn;
 
 	@OneToMany(mappedBy = "drug")
