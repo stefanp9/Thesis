@@ -2,7 +2,9 @@ package com.pharmacy.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "form", catalog = "pharmacy_schema")
@@ -24,14 +30,12 @@ public class Form implements Serializable {
 	@Column(name = "form_name")
 	private String formName;
 
-	@OneToMany(mappedBy = "form")
-	List<Drug> drugs = new ArrayList<>();
+	@OneToMany(mappedBy = "drugForm")
+	@Column(nullable = true)
+	@JsonIgnore
+	private Set<Drug> drugs = new HashSet<>(0);
 
 	public Form() {
-	}
-
-	public List<Drug> getDrugs() {
-		return drugs;
 	}
 
 	public String getFormName() {
@@ -42,7 +46,11 @@ public class Form implements Serializable {
 		return id;
 	}
 
-	public void setDrugs(List<Drug> drugs) {
+	public Set<Drug> getDrugs() {
+		return drugs;
+	}
+
+	public void setDrugs(Set<Drug> drugs) {
 		this.drugs = drugs;
 	}
 

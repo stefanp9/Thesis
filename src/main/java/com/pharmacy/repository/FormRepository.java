@@ -9,5 +9,6 @@ import com.pharmacy.model.Form;
 public interface FormRepository extends Repository<Form, Integer> {
 	
 	List<Form> findAll();
+	Form findByFormName(String formName);
 
 }

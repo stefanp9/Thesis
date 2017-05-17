@@ -15,7 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pharmacy.dto.DrugDto;
 
 @Entity
 @Table(name = "drug", catalog = "pharmacy_schema")
@@ -37,11 +40,10 @@ public class Drug implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "form_id")
-	private Form form;
+	private Form drugForm;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "manufacturer_id")
-	@JsonIgnore
 	private Manufacturer manufacturer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -54,6 +56,15 @@ public class Drug implements Serializable {
 
 	public Drug() {
 	}
+	
+	public Drug(DrugDto drugDto, Form drugForm, Manufacturer drugManufacturer, INN drugInn){
+		this.name = drugDto.getName();
+		this.dosage = drugDto.getDosage();
+		this.price = drugDto.getPrice();
+		this.drugForm = drugForm;
+		this.manufacturer = drugManufacturer;
+		this.inn = drugInn;
+	}
 
 	public List<BillItem> getBillItems() {
 		return billItems;
@@ -63,9 +74,6 @@ public class Drug implements Serializable {
 		return dosage;
 	}
 
-	public Form getForm() {
-		return form;
-	}
 
 	public Integer getId() {
 		return id;
@@ -95,8 +103,12 @@ public class Drug implements Serializable {
 		this.dosage = dosage;
 	}
 
-	public void setForm(Form form) {
-		this.form = form;
+	public Form getDrugForm() {
+		return drugForm;
+	}
+
+	public void setDrugForm(Form drugForm) {
+		this.drugForm = drugForm;
 	}
 
 	public void setId(Integer id) {
@@ -117,6 +129,17 @@ public class Drug implements Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	public DrugDto transferToDrugDto(){
+		DrugDto drugDto = new DrugDto(name, dosage, price, drugForm.getFormName(), inn.getInn(), manufacturer.getName());
+//		drugDto.setName(name);
+//		drugDto.setPrice(price);
+//		drugDto.setDosage(dosage);
+//		drugDto.setDrugForm(drugForm.getFormName());
+//		drugDto.setDrugInn(inn.getInn());
+//		drugDto.setDrugManufacturer(manufacturer.getName());
+		return drugDto;
 	}
 
 }
