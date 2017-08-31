@@ -3,26 +3,24 @@
  */
 package com.pharmacy.dto;
 
-import com.pharmacy.model.Form;
-
 /**
  * @author Stefan.Petrovic
  *
  */
 public class DrugDto {
+	private Integer id;
 	private String name;
 	private Double dosage;
 	private Double price;
 	private String drugForm;
 	private String drugInn;
 	private String drugManufacturer;
-	
+
 	public DrugDto() {
 	}
-	
-	
 
-	public DrugDto(String name, Double dosage, Double price, String drugForm, String drugInn, String drugManufacturer) {
+	public DrugDto(Integer id, String name, Double dosage, Double price, String drugForm, String drugInn, String drugManufacturer) {
+		this.id = id;
 		this.name = name;
 		this.dosage = dosage;
 		this.price = price;
@@ -31,7 +29,13 @@ public class DrugDto {
 		this.drugManufacturer = drugManufacturer;
 	}
 
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

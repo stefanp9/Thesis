@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.pharmacy.dto.BillItemDto;
+
 @Entity
 @Table(name = "bill_item", catalog = "pharmacy_schema")
 public class BillItem {
@@ -20,7 +22,7 @@ public class BillItem {
 	private Integer id;
 
 	@Column(name = "ordinal_number")
-	private Integer oN;
+	private Integer ordinalNo;
 
 	@Column(name = "quantity")
 	private Integer quantity;
@@ -47,11 +49,11 @@ public class BillItem {
 	}
 
 	public Integer getoN() {
-		return oN;
+		return ordinalNo;
 	}
 
 	public void setoN(Integer oN) {
-		this.oN = oN;
+		this.ordinalNo = oN;
 	}
 
 	public Integer getQuantity() {
@@ -85,7 +87,12 @@ public class BillItem {
 	public void setBill(Bill bill) {
 		this.bill = bill;
 	}
-
-
+	
+	public BillItemDto transferToBillItemDto() {
+		BillItemDto dto = new BillItemDto(ordinalNo, drug.getName()+" "+drug.getDosage(), quantity, amount);
+		return dto;
+	}
 
 }
+
+

@@ -1,12 +1,12 @@
 package com.pharmacy.service;
 
-import static org.mockito.Matchers.matches;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pharmacy.dto.DrugDto;
 import com.pharmacy.model.Drug;
@@ -16,9 +16,10 @@ import com.pharmacy.model.Manufacturer;
 import com.pharmacy.repository.DrugRepository;
 import com.pharmacy.repository.FormRepository;
 import com.pharmacy.repository.INNRepository;
-import com.pharmacy.repository.ManufacturerReposittory;
+import com.pharmacy.repository.ManufacturerRepository;
 
 @Service
+@Transactional
 public class DrugService {
 	
 	@Autowired
@@ -31,7 +32,7 @@ public class DrugService {
 	private INNRepository innRepository;
 	
 	@Autowired
-	private ManufacturerReposittory manufacturerReposittory;
+	private ManufacturerRepository manufacturerReposittory;
 
 	public List<DrugDto> getAllDrugs (){
 		List<Drug> allDrugs = drugRepository.findAll();
@@ -60,6 +61,15 @@ public class DrugService {
 		Manufacturer manufacturer = manufacturerReposittory.findByName(newDrug.getDrugManufacturer());
 		System.out.println(manufacturer.getName());
 		Drug drug = new Drug(newDrug, drugForm, manufacturer, drugInn);
+		//drug.setId(newDrug.getId());
 		drugRepository.save(drug);
 	}
+
+	public void deleteDrug(Integer id) {
+		drugRepository.deleteById(id);
+	}
+
+	public void modifyDrug(DrugDto updatedDrug) {
+		drugRepository.setDrugById(updatedDrug.getDosage(), updatedDrug.getName(),updatedDrug.getPrice(), updatedDrug.getId());
+}
 }

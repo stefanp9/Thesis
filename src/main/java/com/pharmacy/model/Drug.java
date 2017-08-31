@@ -132,7 +132,7 @@ public class Drug implements Serializable {
 	}
 	
 	public DrugDto transferToDrugDto(){
-		DrugDto drugDto = new DrugDto(name, dosage, price, drugForm.getFormName(), inn.getInn(), manufacturer.getName());
+		DrugDto drugDto = new DrugDto(id, name, dosage, price, drugForm.getFormName(), inn.getInn(), manufacturer.getName());
 //		drugDto.setName(name);
 //		drugDto.setPrice(price);
 //		drugDto.setDosage(dosage);
