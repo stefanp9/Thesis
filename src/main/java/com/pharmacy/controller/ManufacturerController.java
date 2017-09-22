@@ -36,7 +36,7 @@ public class ManufacturerController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateDrug(@PathVariable("id") Integer id, @RequestBody ManufacturerDto updatedManufacturer ){
+	public ResponseEntity<?> updatedManufacturer(@PathVariable("id") Integer id, @RequestBody ManufacturerDto updatedManufacturer ){
 		if(id == updatedManufacturer.getId()) {
 			manufacturerService.modifyManufacturer(updatedManufacturer);			
 			return new ResponseEntity<>(HttpStatus.OK);

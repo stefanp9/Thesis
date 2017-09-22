@@ -58,7 +58,7 @@ public class DrugController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateDrug(@PathVariable("id") Integer id, @RequestBody DrugDto updatedDrug ){
 		if(id == updatedDrug.getId()) {
-			drugService.modifyDrug(updatedDrug);			
+			drugService.modifyDrug(updatedDrug);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
