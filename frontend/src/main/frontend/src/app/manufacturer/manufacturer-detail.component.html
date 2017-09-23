@@ -1,0 +1,38 @@
+<div class='panel panel-primary' *ngIf='manuf'>
+  <div class='panel-heading'>
+    {{pageTitle + ': '}} {{manuf.name | uppercase}}
+  </div>
+
+  <div class='panel-body'>
+      <div class='row'>
+          <div class='col-md-6'>
+              <div class='row'>
+                  <div class='col-md-3'>Naziv:</div>
+                  <div class='col-md-6'>{{manuf.name}}</div>
+              </div>
+              <div class='row'>
+                  <div class='col-md-3'>PIB:</div>
+                  <div class='col-md-6'>{{manuf.pib}}</div>
+              </div>
+              <div class='row'>
+                  <div class='col-md-3'>Sedište:</div>
+                  <div class='col-md-6'>{{manuf.headquters}}</div>
+              </div>
+              <div class='row'>
+                  <div class='col-md-3'>Telefon:</div>
+                  <div class='col-md-6'>{{manuf.phoneNumber}}</div>
+              </div>
+              <div class='row'>
+                <div class='col-md-3'>E-pošta:</div>
+                <div class='col-md-6'>{{manuf.email}}</div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  <div class='panel-footer'>
+      <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+          <i class='glyphicon glyphicon-chevron-left'></i> Back
+      </a>
+  </div>
+</div>

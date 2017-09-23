@@ -1,0 +1,42 @@
+<div class='panel panel-primary' *ngIf='drug'>
+  <div class='panel-heading'>
+    {{pageTitle + ': '}} {{drug.name | uppercase}}
+  </div>
+
+  <div class='panel-body'>
+      <div class='row'>
+          <div class='col-md-6'>
+              <div class='row'>
+                  <div class='col-md-3'>Naziv leka:</div>
+                  <div class='col-md-6'>{{drug.name}}</div>
+              </div>
+              <div class='row'>
+                  <div class='col-md-3'>Jačina:</div>
+                  <div class='col-md-6'>{{drug.dosage}}</div>
+              </div>
+              <div class='row'>
+                  <div class='col-md-3'>Pakovanje:</div>
+                  <div class='col-md-6'>{{drug.drugForm}}</div>
+              </div>
+              <div class='row'>
+                  <div class='col-md-3'>INN:</div>
+                  <div class='col-md-6'>{{drug.drugInn}}</div>
+              </div>
+              <div class='row'>
+                <div class='col-md-3'>Proizvođač:</div>
+                <div class='col-md-6'>{{drug.drugManufacturer}}</div>
+            </div>
+              <div class='row'>
+                  <div class='col-md-3'>Cena:</div>
+                  <div class='col-md-6'>{{drug.price|currency :'RSD':true:'1.2-2'}}</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class='panel-footer'>
+      <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+          <i class='glyphicon glyphicon-chevron-left'></i> Back
+      </a>
+  </div>
+</div>

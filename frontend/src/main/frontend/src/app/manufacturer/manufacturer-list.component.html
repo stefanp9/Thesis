@@ -1,0 +1,43 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+      {{pageTitle}}
+  </div>
+  <div class='panel-body'>
+      <div class='row'>
+          <div class='col-md-2'>Filter by:</div>
+          <div class='col-md-4'>
+              <input type='text'
+                      [(ngModel)]='listFilter'/>
+          </div>
+      </div>
+      <div class='row'>
+              <div class='col-md-6'>
+                      <h3>Filtered by: {{listFilter}}</h3>
+                  </div>
+      </div>
+      <div class='table-responsive'>
+          <table class='table'
+                  *ngIf='manufs && manufs.length'>
+              <thead>
+                  <tr>
+                      <th>Naziv</th>
+                      <th>PIB</th>
+                      <th>Sedište</th>
+                      <th>Telefon</th>
+                      <th>E-pošta</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor='let manuf of filtredManufs'>
+                      <td><a [routerLink]="['/manufacturers', manuf.id]">{{manuf.name}}</a></td>
+                      <td>{{manuf.pib | uppercase}}</td>
+                      <td>{{manuf.headquters}}</td>
+                      <td>{{manuf.phoneNumber| uppercase}}</td>
+                      <td>{{manuf.email | lowercase}}</td>
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
