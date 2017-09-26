@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { DrugService } from "./drugs/drug.service";
-import { ManufacturerService } from './manufacturer/manufacturer.service';
-import { BillService } from './bills/bill.service';
+
 
 @Component({
   selector: 'pm-root',
@@ -15,6 +13,7 @@ import { BillService } from './bills/bill.service';
               <li><a [routerLink]="['/drugs']">LEKOVI</a></li>
               <li><a [routerLink]="['/manufacturers']">PROIZVOĐAČI</a></li>
               <li><a [routerLink]="['/bills']">RAČUNI</a></li>
+              <li><a [routerLink]="['/drugEdit/0']">KREIRAJ RAČUN</a></li>
           </ul>
       </div>
   </nav>
@@ -22,8 +21,8 @@ import { BillService } from './bills/bill.service';
       <router-outlet></router-outlet>
   </div>
 </div>
-`,
-  providers:[DrugService, ManufacturerService, BillService]
+<script></script>
+`
 })
 export class AppComponent {
   pageTitle: string = 'APOTEKA:Dobro došli ';

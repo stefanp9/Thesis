@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pharmacy.dto.FormDto;
 
 @Entity
 @Table(name = "form", catalog = "pharmacy_schema")
@@ -60,6 +61,11 @@ public class Form implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public FormDto transferToFormDto() {
+		FormDto dto = new FormDto(formName);
+		return dto;
 	}
 
 }

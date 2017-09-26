@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pharmacy.dto.DrugDto;
 import com.pharmacy.model.Drug;
+import com.pharmacy.model.Form;
+import com.pharmacy.model.INN;
+import com.pharmacy.model.Manufacturer;
 
 public interface DrugRepository extends Repository<Drug, Integer> {
 	
@@ -18,7 +21,7 @@ public interface DrugRepository extends Repository<Drug, Integer> {
 	Drug save(Drug drug);
 	@Modifying
 	@Query("update Drug d set d.dosage = ?1, d.name = ?2, d.price=?3 where d.id = ?4")
-	void setDrugById(Double dosage, String name, Double price, Integer id);
+	void setDrugById(Double dosage, String name, Double price, Integer id, INN drugInn, Form drugForm, Manufacturer manufacturer);
 	void deleteById(Integer id);
 	Drug findById(Integer id);
 

@@ -1,8 +1,8 @@
 export interface IManuf {
         id : number,
-        pib : number,
+        pib : string,
         name : string,
         headquters : string,
-        phoneNumber: number,
+        phoneNumber: string,
         email : string
 }

@@ -29,13 +29,13 @@ public class Drug implements Serializable {
 	@Column(name = "drug_id", unique = true, nullable = false)
 	private Integer id;
 
-	@Column(name = "drug_name", unique = true, nullable = false)
+	@Column(name = "drug_name", unique = false, nullable = false)
 	private String name;
 
-	@Column(name = "dosage", unique = true, nullable = false)
+	@Column(name = "dosage", unique = false, nullable = false)
 	private Double dosage;
 
-	@Column(name = "price", unique = true, nullable = false)
+	@Column(name = "price", unique = false, nullable = false)
 	private Double price;
 
 	@ManyToOne(fetch = FetchType.LAZY)

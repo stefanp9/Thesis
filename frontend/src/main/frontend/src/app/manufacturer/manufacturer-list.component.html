@@ -4,7 +4,7 @@
   </div>
   <div class='panel-body'>
       <div class='row'>
-          <div class='col-md-2'>Filter by:</div>
+          <div class='col-md-2'>Filtriraj:</div>
           <div class='col-md-4'>
               <input type='text'
                       [(ngModel)]='listFilter'/>
@@ -12,9 +12,14 @@
       </div>
       <div class='row'>
               <div class='col-md-6'>
-                      <h3>Filtered by: {{listFilter}}</h3>
+                      <h3>Filter: {{listFilter}}</h3>
                   </div>
       </div>
+      <div class='panel-body'>
+        <a class='btn btn-default' [routerLink]="['/manufacturerEdit/0']" style='width:160px'>
+            <i class='glyphicon glyphicon glyphicon-plus'></i> Dodaj proizvođača
+        </a>
+    </div>
       <div class='table-responsive'>
           <table class='table'
                   *ngIf='manufs && manufs.length'>
@@ -34,6 +39,12 @@
                       <td>{{manuf.headquters}}</td>
                       <td>{{manuf.phoneNumber| uppercase}}</td>
                       <td>{{manuf.email | lowercase}}</td>
+                      <td>
+                        <a class="btn btn-primary" 
+                           [routerLink]="['/manufacturerEdit', manuf.id]">
+                            Edit
+                        </a>
+                    </td>
                   </tr>
 
               </tbody>

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pharmacy.dto.DrugDto;
+import com.pharmacy.dto.FormDto;
+import com.pharmacy.dto.INNDto;
 import com.pharmacy.model.Drug;
 import com.pharmacy.model.Form;
 import com.pharmacy.model.INN;
@@ -43,14 +45,40 @@ public class DrugService {
 		return allDrugsDto;
 	}
 	
-	public List<Form> getAllForms(){
+	public List<FormDto> getAllForms(){
 		List<Form> allDrugForms = formRepository.findAll();
-		return allDrugForms;
+		List<FormDto> allForms = new ArrayList<>();
+		for (Form form : allDrugForms) {
+			 allForms.add(form.transferToFormDto());
+		}
+		return allForms;
 	}
+	
+/*	public String[] getArrayOfForms() {
+		List<String> stringovi = new ArrayList<String>();
+		List<Form> allDrugForms = formRepository.findAll();	
+		List<FormDto> allForms = new ArrayList<>();
+		for (Form form : allDrugForms) {
+			 allForms.add(form.transferToFormDto());
+		}
+		for (FormDto formDto : allForms) {
+			stringovi.add(formDto.getForm());
+		}
+		String[] niz = stringovi.stream().toArray(String[]::new);
 
-	public List<INN> getAllInns() {
+		for (int i = 0; i < niz.length; i++) {
+			System.out.println(""+niz[i]);
+		}
+		return niz;
+	}*/
+
+	public List<INNDto> getAllInns() {
 		List<INN> allDrugInns = innRepository.findAll();
-		return allDrugInns;
+		List<INNDto> alldtos = new ArrayList<>();
+		for (INN inn : allDrugInns) {
+			alldtos.add(inn.transferToDto());
+		}
+		return alldtos;
 	}
 
 	public void addDrug(DrugDto newDrug) {
@@ -70,7 +98,17 @@ public class DrugService {
 	}
 
 	public void modifyDrug(DrugDto updatedDrug) {
-		drugRepository.setDrugById(updatedDrug.getDosage(), updatedDrug.getName(),updatedDrug.getPrice(), updatedDrug.getId());
+		Drug drugToUpdate = drugRepository.findById(updatedDrug.getId());
+		drugToUpdate.setName(updatedDrug.getName());
+		drugToUpdate.setPrice(updatedDrug.getPrice());
+		drugToUpdate.setDosage(updatedDrug.getDosage());
+		INN drugInn = innRepository.findByInn(updatedDrug.getDrugInn());
+		Form drugForm = formRepository.findByFormName(updatedDrug.getDrugForm());
+		Manufacturer manufacturer = manufacturerReposittory.findByName(updatedDrug.getDrugManufacturer());
+		drugToUpdate.setInn(drugInn);
+		drugToUpdate.setDrugForm(drugForm);
+		drugToUpdate.setManufacturer(manufacturer);
+	    drugRepository.save(drugToUpdate);	
 }
 	
 	public DrugDto getDrug(Integer id) {

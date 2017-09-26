@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.pharmacy.dto.INNDto;
+
 @Entity
 @Table(name = "inn", catalog = "pharmacy_schema")
 public class INN implements Serializable {
@@ -63,6 +65,12 @@ public class INN implements Serializable {
 
 	public void setInn(String inn) {
 		this.inn = inn;
+	}
+	
+	public INNDto transferToDto() {
+		INNDto dto = new INNDto();
+		dto.setInn(inn);
+		return dto;
 	}
 
 }

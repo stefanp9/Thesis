@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pharmacy.dto.DrugDto;
+import com.pharmacy.dto.FormDto;
+import com.pharmacy.dto.INNDto;
 import com.pharmacy.model.Drug;
 import com.pharmacy.model.Form;
 import com.pharmacy.model.INN;
@@ -43,16 +45,22 @@ public class DrugController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/forms", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/forms", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllDrugForms() {
-		List<Form> allDrugForms = drugService.getAllForms();
-		return new ResponseEntity<List<Form>>(allDrugForms, HttpStatus.OK);
-	}
+		List<FormDto> allDrugForms = drugService.getAllForms();
+		return new ResponseEntity<List<FormDto>>(allDrugForms, HttpStatus.OK);
+	}*/
 
 	@RequestMapping(value = "/inns", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllDrugInns() {
-		List<INN> allDrugInns = drugService.getAllInns();
-		return new ResponseEntity<List<INN>>(allDrugInns, HttpStatus.OK);
+		List<INNDto> allDrugInns = drugService.getAllInns();
+		return new ResponseEntity<List<INNDto>>(allDrugInns, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/forms", method = RequestMethod.GET)
+	public ResponseEntity<?> getFormsArray(){
+		List<FormDto> formsArray = drugService.getAllForms();
+		return new ResponseEntity<List<FormDto>>(formsArray, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

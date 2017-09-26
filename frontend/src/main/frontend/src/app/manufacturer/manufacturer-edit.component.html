@@ -1,0 +1,94 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{pageTitle}} {{id}}
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" #form='ngForm' (submit)="save(form)" novalidate>
+      <fieldset>
+        <div class="form-group" [class.has-error]="manName.invalid && manName.touched">
+          <label class="col-md-2 control-label" for="manNameId">Ime:</label>
+          <div class="col-md-8">
+            <input #manName = "ngModel" type="text" required placeholder="Unesi ime proizvođača" name="manName" id="manNameId" [(ngModel)]="man.name">
+          </div>
+          <div *ngIf="manName.invalid && manName.touched" class="alert alert-danger">
+            Naziv je obavezan.
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="manPib.invalid && manPib.touched">
+          <label class="col-md-2 control-label" for="manNameId2">PIB:</label>
+          <div class="col-md-8">
+            <input #manPib="ngModel" type="text" required placeholder="Unesi PIB" name="manPib" id="manNameId2" [(ngModel)]="man.pib">
+          </div>
+          <div *ngIf="manPib.invalid && manPib.touched" class="alert alert-danger">
+            PIB je obavezan
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="manHeadquters.invalid && manHeadquters.touched">
+          <label class="col-md-2 control-label" for="manNameId3">Sediste:</label>
+          <div class="col-md-8">
+            <input #manHeadquters="ngModel" type="text" required placeholder="Unesi sediste kompanije" name="manHeadquters" id="manNameId3" [(ngModel)]="man.headquters">
+          </div>
+          <div *ngIf="manHeadquters.invalid && manHeadquters.touched" class="alert alert-danger">
+            Sediste je obavezano.
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="manPhoneNumber.invalid && manPhoneNumber.touched">
+          <label class="col-md-2 control-label" for="manNameId4">Telefon:</label>
+          <div class="col-md-8">
+            <input #manPhoneNumber="ngModel" type="text" required placeholder="Unesi telefon" name="manPhoneNumber" id="manNameId4" [(ngModel)]="man.phoneNumber">
+          </div>
+          <div *ngIf="manPhoneNumber.invalid && manPhoneNumber.touched" class="alert alert-danger">
+            Telefon je obavezan.
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="manEmail.invalid && manEmail.touched">
+          <label class="col-md-2 control-label" for="manNameId5">E-pošta:</label>
+          <div class="col-md-8">
+            <input #manEmail="ngModel" type="text" required placeholder="Unesi email" name="manEmail" id="manNameId5" [(ngModel)]="man.email">
+          </div>
+          <div *ngIf="manEmail.invalid && manEmail.touched" class="alert alert-danger">
+                Niste uneli validan email
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-4 col-md-offset-2">
+            <span>
+            <button class="btn btn-primary"
+                    type="submit"
+                    style="width:80px;margin-right:10px"
+                    [disabled]="form.invalid"
+            >
+                Save
+            </button>
+        </span>
+            <span>
+            <button class="btn btn-primary"
+            type="button"
+            style="width:80px;margin-right:10px"
+            [routerLink]="['/manufacturers']"
+    >
+        Cancel
+    </button>
+        </span>
+            <span>
+            <button class="btn btn-primary"
+            type="button"
+            style="width:80px;margin-right:10px"
+            (click)="deleteman()"
+            [disabled]="id===0"
+    >
+        Delete
+    </button>
+        </span>
+          </div>
+        </div>
+
+
+      </fieldset>
+    </form>
+  </div>
